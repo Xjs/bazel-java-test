@@ -1,0 +1,8 @@
+java_binary(
+    name = "main",
+    main_class = "src.bazeltest.Main",
+    visibility = ["//visibility:public"],
+    runtime_deps = [
+        "//src/bazeltest:main",
+    ],
+)

@@ -1,7 +1,32 @@
+GENERATOR_CMD = """read SOME_INPUT < $< && cat <<EOF > $@
+package bazeltest;
+
+public final class BazelTest {
+
+  public static final int GENERATED = $${SOME_INPUT};
+
+  public static boolean compare(int something) {
+    return GENERATED == something;
+  }
+}
+EOF
+"""
+
+# Create static-data version source file
+genrule(
+    name = "generated_input",
+    srcs = ["//:STATIC_INPUT"],
+    outs = ["BazelTest.java"],
+    cmd = GENERATOR_CMD,
+)
+
 java_library(
     name = "main",
     srcs = [
+        "ByteBufferWriter.java",
         "Main.java",
+        "UnsafeUtil.java",
+        "BazelTest.java",
     ],
     visibility = ["//visibility:public"],
 )

@@ -1,6 +1,11 @@
+exports_files(
+    ["STATIC_INPUT"],
+    visibility = ["//:__subpackages__"],
+)
+
 java_binary(
     name = "main",
-    main_class = "src.bazeltest.Main",
+    main_class = "bazeltest.Main",
     visibility = ["//visibility:public"],
     runtime_deps = [
         "//src/bazeltest:main",

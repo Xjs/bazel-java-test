@@ -1,8 +1,3 @@
-exports_files(
-    ["STATIC_INPUT"],
-    visibility = ["//:__subpackages__"],
-)
-
 java_binary(
     name = "main",
     main_class = "bazeltest.Main",
